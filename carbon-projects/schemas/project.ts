@@ -83,6 +83,7 @@ export default defineType({
           { title: "Verra", value: "VCS" },
           { title: "Gold Standard", value: "GS" },
           { title: "EcoRegistry", value: "ECO" },
+          { title: "International Carbon Registry", value: "ICR"},
         ],
       },
       validation: (r) => r.required(),
@@ -214,30 +215,30 @@ export default defineType({
     }),
     defineField({
       name: "url",
-      description: "Project website or resource url, if exists",
+      description: "Project's website or resource url on the registry, if exists",
       group: "media",
       type: "url",
     }),
     defineField({
-      name: "documents",
-      description: "Other PDF documents associated with this project",
+      name: "projectWebsite",
+      description: "External project website, if exists",
+      group: "media",
+      type: "url",
+    }),
+    defineField({
+      name: "externalMedia",
+      description:
+        "Arrays of external media URIs and associated captions",
       group: "media",
       type: "array",
-      of: [
-        {
-          type: "file",
-          options: {
-            accept: ".pdf",
-          },
-          fields: [
-            {
-              name: "description",
-              description: "Description of the file",
-              type: "string",
-            },
-          ],
-        },
-      ],
+      of: [{type: "externalFile"}],
+    }),
+    defineField({
+      name: "externalDocuments",
+      description: "External PDF documents associated with this project",
+      group: "media",
+      type: "array",
+      of: [{type: "externalFile"}],
     }),
   ],
 });
