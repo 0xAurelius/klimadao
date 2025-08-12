@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: Release-staging
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: ${{ github.ref }}
           fetch-depth: 0 # We need this for fetching tags

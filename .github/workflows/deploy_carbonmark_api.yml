@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ github.ref }}
           fetch-depth: 0 # We need this for fetching tags
@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Pull Vercel Environment Information
         run: vercel env pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }} carbonmark-api/.env.local
@@ -51,7 +51,7 @@ jobs:
       deployed_url: ${{ env.DEPLOYED_URL }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set short commit hash to environment variable
         run: echo "SHORT_COMMIT_SHA=$(echo ${{ github.event.pull_request.head.sha }} | cut -c 1-7)" >> $GITHUB_ENV
@@ -75,7 +75,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Healthcheck deployment
         run: npx newman run carbonmark-api/postman_collection.json --env-var "url=${{ needs.deploy_preview.outputs.deployed_url }}"
